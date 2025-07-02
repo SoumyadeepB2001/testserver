@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Match The Tiles</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/customscrollbar.css">
+    <style>
+        p {
+            max-width: 100%;
+        }
+
+        .image-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            /* scales down on small screens */
+            height: auto;
+            /* keeps aspect ratio */
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-content">
+                <h1>Match The Tiles</h1>
+                <nav>
+                    <a href="../index.html">&larr; Back to homepage</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>1. Introduction</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            <b>Match the Tiles</b> is a simple and engaging memory game implemented in <b>Java Swing</b>. The objective
+            is to flip two tiles at a time and find matching image pairs. If the selected tiles match, they stay
+            visible; otherwise, they are flipped back after a short delay. The game tracks the number of moves made and
+            congratulates the player once all tiles are matched.
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The game board consists of <b>20 tiles</b> arranged in a 5x4 grid. Each tile has a hidden image, and every
+            image appears exactly twice. Players use their memory to recall the positions of previously revealed tiles
+            and match them in as few moves as possible.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Core Gameplay Mechanics</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Shuffling:</b> A list of 10 unique image indices is duplicated and shuffled to randomize the tile
+            positions before each game.<br>
+            2. <b>Initial Reveal:</b> All tiles are displayed for 3 seconds at the beginning of the game to give the
+            player a short preview.<br>
+            3. <b>Tile Flip:</b> Clicking a tile reveals the hidden image. The game tracks whether a tile is already
+            selected to compare pairs.<br>
+            4. <b>Match Detection:</b> If two consecutively flipped tiles match, they remain visible and disabled. If
+            they don’t, they are flipped back after 800 milliseconds.<br>
+            5. <b>Move Counter:</b> Every pair flipped—regardless of whether it matched—counts as one move and is
+            reflected in the "Moves" label.<br>
+            6. <b>Win Condition:</b> Once all 10 pairs are matched (i.e., 20 matched tiles), a message box congratulates
+            the player and disables further interaction.
+        </p>
+        <div class="video-wrapper">
+            <iframe width="940" height="529" src="https://www.youtube.com/embed/H3TmY1Nf5Lo" title="Match The Tiles"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>3. How Matching Logic Works</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The game maintains internal variables to track selected tiles and their states:
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>State Tracking:</b> A boolean <b>isATileSelected</b> is used to know if a first tile has already been
+            flipped.<br>
+            2. <b>Image Comparison:</b> The index values from the shuffled image list are compared using
+            <b>numbers.get(index)</b> for the first and second selected tiles.<br>
+            3. <b>On Match:</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• Both tiles remain visible.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• Their listeners are removed.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The matched tile count increases by 2.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• If total matched tiles equal 20, the game ends with a win dialog.
+            <br><br>
+            4. <b>On Mismatch:</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• Both tiles are temporarily revealed.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• A <b>Timer</b> runs for 800ms, then resets the tiles to their hidden state.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• During this delay, all tile clicks are disabled by removing their action
+            listeners.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• After reset, listeners are re-added to allow new attempts.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>4. Technical Design Details</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Grid Layout:</b> The UI uses a <b>JPanel</b> with <b>GridLayout(5, 4)</b> to create a uniform 20-tile
+            layout.<br>
+            2. <b>Icon Management:</b> Tile images are stored in an array and assigned based on a shuffled index list.
+            The backside image is assigned after a 3-second delay using a one-time <b>Swing Timer</b>.<br>
+            3. <b>Sound Feedback:</b> Each tile click plays a wooden sound using <b>javax.sound.sampled</b> audio
+            APIs.<br>
+            4. <b>Move Tracking:</b> A label at the top updates after every attempt using the variable
+            <b>noOfMoves</b>.<br>
+            5. <b>Listener Control:</b> The game disables all tile interactions during mismatches using
+            <b>removeActionListener()</b> to prevent interference during the delay timer.
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Soumyadeep Banerjee. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

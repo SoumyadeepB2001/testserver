@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic-Tac-Toe with Minimax AI</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/customscrollbar.css">
+    <style>
+        p {
+            max-width: 100%;
+        }
+
+        .image-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-content">
+                <h1>Tic-Tac-Toe with Minimax AI</h1>
+                <nav>
+                    <a href="../index.html">&larr; Back to homepage</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>1. Introduction to the Game and Minimax</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            <b>Tic-Tac-Toe</b> is a classic two-player board game played on a 3×3 grid. Players take turns placing their
+            symbols (usually X and O) on the grid, aiming to align three symbols in a row, column, or diagonal.
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            This project supports two modes:
+            <b>Player vs Player (PvP)</b> and <b>Player vs Computer (PvC)</b>. In the PvP mode, two human players can
+            take turns on the same device. In the PvC mode, the player competes against an intelligent computer opponent
+            powered by the <b>Minimax algorithm</b>.
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The player also has the option to choose whether to make the first move or allow the computer to start. The
+            minimax algorithm ensures that the AI plays optimally, making it impossible to defeat. It will win if
+            possible
+            or force a draw when not.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Core Mechanics of the Project</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Java Swing GUI</b>: A visually interactive 3x3 board is built using Java Swing, allowing the player to
+            click on cells to make their move.<br>
+            2. <b>Turn Handling</b>: The user selects whether to go first or second. Turns alternate between the player
+            and the AI.<br>
+            3. <b>Minimax-Powered AI</b>: On its turn, the computer uses the minimax algorithm to determine the most
+            optimal move.<br>
+            4. <b>Game Result Detection</b>: The game automatically detects a win, loss, or draw after every move and
+            displays the outcome.<br>
+            5. <b>Restart Option</b>: A button is provided to restart the game after a match ends.<br>
+        </p>
+
+        <div class="video-wrapper">
+            <iframe width="940" height="529" src="https://www.youtube.com/embed/chmDibEvXmQ"
+                title="Tic-Tac-Toe (Minimax)" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>3. How the Minimax Algorithm Works in This Project</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The <b>Minimax algorithm</b> is used to simulate all possible future moves and outcomes to help the AI pick
+            the most advantageous move. It does so by treating the game as a tree of possibilities, with each node
+            representing a board state and each edge representing a move.
+        </p>
+
+        <p style="text-align: justify; text-justify: inter-word;">
+            Here's a theoretical breakdown of how minimax works in this Tic-Tac-Toe project:
+        </p>
+
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Turn Simulation</b>: At the AI's turn, it examines all possible cells where it can place its symbol
+            (O).
+            For each such move, it pretends to make that move and then simulates the opponent's possible responses
+            (X).<br><br>
+
+            2. <b>Recursive Evaluation</b>: For every simulated move, the algorithm checks if the resulting board state
+            leads to a win, loss, or draw. If the game is not over, it recurses deeper, alternating between the
+            "maximizing" player (AI) and the "minimizing" player (human).<br><br>
+
+            3. <b>Scoring Terminal States</b>: Once a terminal state (game over) is reached, it assigns a score:<br>
+            - <b>+1</b> if the AI (O) wins<br>
+            - <b>0</b> if it's a draw<br>
+            - <b>-1</b> if the AI loses<br><br>
+
+            4. <b>Backtracking and Decision</b>: As recursion unwinds, the algorithm propagates these scores upward. At
+            each level:<br>
+            - The <b>AI (maximizer)</b> picks the move with the <b>highest score</b>.<br>
+            - The <b>human (minimizer)</b> is assumed to pick the move with the <b>lowest score</b>.<br><br>
+
+            5. <b>Best Move Selection</b>: Ultimately, the AI selects the move that leads to the path with the highest
+            guaranteed score (considering the human opponent will also play optimally). This ensures the AI never loses,
+            and it wins when possible.
+        </p>
+
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/tic-tac-toe/decision-tree.png" alt="Minimax Decision Tree">
+        </div>
+
+        <p style="text-align: justify; text-justify: inter-word;">
+            The advantage of this approach is that it makes the AI <b>unbeatable</b>. While a human can still draw the
+            game by playing perfectly, they will never be able to win against this AI.
+        </p>
+    </section>
+</body>
+
+</html>

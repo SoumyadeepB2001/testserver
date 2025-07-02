@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Editor</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/customscrollbar.css">
+    <style>
+        p {
+            max-width: 100%;
+        }
+
+        .image-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            /* scales down on small screens */
+            height: auto;
+            /* keeps aspect ratio */
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-content">
+                <h1>Text Editor</h1>
+                <nav>
+                    <a href="../index.html">&larr; Back to homepage</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>1. Introduction</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            This is a full-featured <b>text editor application</b> built in <b>Java Swing</b>, designed to handle
+            essential document editing tasks in a modern and user-friendly interface. It provides standard editing
+            capabilities like cut, copy, paste, undo/redo, along with advanced features such as <b>font and color
+                customization</b>, <b>find and replace</b>, and <b>printing support</b>.
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The editor supports working with multiple fonts, styles, sizes, and both font/background color control.
+            Files can be opened, saved, printed, or created anew, with changes tracked using an integrated
+            <b>UndoManager</b>. The application also incorporates shortcuts and dialogs that enhance usability.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Key Features and Functionalities</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>File Operations:</b> Supports creating, opening, saving, and printing files. File handling is done
+            using <b>BufferedReader</b> and <b>BufferedWriter</b> for reliability.<br>
+            2. <b>Undo/Redo:</b> Managed using Java’s <b>UndoManager</b>, allowing users to revert or reapply
+            changes.<br>
+            3. <b>Find and Replace:</b> Interactive dialog with support for <b>case-sensitive</b> searches, "find next",
+            "replace", and "replace all" operations.<br>
+            4. <b>Font Customization:</b> Users can choose from a wide range of fonts, styles (plain, bold, italic), and
+            sizes.<br>
+            5. <b>Text Color and Background Color:</b> Comprehensive color options are available for both foreground and
+            background customization.<br>
+            6. <b>Wrap Text Toggle:</b> Toggle line wrapping for long lines directly from the menu using a
+            <b>JCheckBoxMenuItem</b>.<br>
+            7. <b>Date/Time Insertion:</b> Inserts the current date and time at the cursor location in a human-readable
+            format.<br>
+            8. <b>Keyboard Shortcuts:</b> Common shortcuts like <b>Ctrl+S</b> (Save), <b>Ctrl+O</b> (Open),
+            <b>Ctrl+P</b> (Print), <b>Ctrl+Z</b> (Undo), <b>Ctrl+Y</b> (Redo) are integrated.
+        </p>
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/text_editor/new_file.png" alt="Creating a new file">
+        </div><br>
+        <p style="text-align: center; text-justify: inter-word;"><b>Creating a new file</b></p>
+
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/text_editor/open_file.png" alt="Opening an existing file">
+        </div><br>
+        <p style="text-align: center; text-justify: inter-word;"><b>Opening an existing file</b></p>
+
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/text_editor/save.png" alt="Saving a file">
+        </div><br>
+        <p style="text-align: center; text-justify: inter-word;"><b>Saving a file</b></p>
+
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/text_editor/print.png" alt="Printing a file">
+        </div><br>
+        <p style="text-align: center; text-justify: inter-word;"><b>Printing a file</b></p>
+
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/text_editor/find_replace.png" alt="Find and replace">
+        </div><br>
+        <p style="text-align: center; text-justify: inter-word;"><b>Find and replace</b></p>
+
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/text_editor/font.png" alt="Choosing the font">
+        </div><br>
+        <p style="text-align: center; text-justify: inter-word;"><b>Choosing the font</b></p>
+
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/text_editor/font_style.png" alt="Choosing the font style">
+        </div><br>
+        <p style="text-align: center; text-justify: inter-word;"><b>Choosing the font style</b></p>
+
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/text_editor/font_size.png" alt="Choosing the font size">
+        </div><br>
+        <p style="text-align: center; text-justify: inter-word;"><b>Choosing the font size</b></p>
+
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/text_editor/font_color.png" alt="Choosing the font color">
+        </div><br>
+        <p style="text-align: center; text-justify: inter-word;"><b>Choosing the font color</b></p>
+
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/text_editor/back_color.png" alt="Choosing the background color">
+        </div><br>
+        <p style="text-align: center; text-justify: inter-word;"><b>Choosing the background color</b></p>
+
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/text_editor/full.png" alt="Formatting">
+        </div><br>
+        <p style="text-align: center; text-justify: inter-word;"><b>Formatting</b></p>
+
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/text_editor/exit.png" alt="Exiting the application">
+        </div><br>
+        <p style="text-align: center; text-justify: inter-word;"><b>Exiting the application</b></p>
+    </section>
+
+    <section class="section">
+        <h2>3. How the Editor Internally Works</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Text Input:</b> The <b>JTextArea</b> component serves as the main editing area, wrapped in a
+            <b>JScrollPane</b> for scrollability.<br>
+            2. <b>Menu System:</b> Constructed using <b>JMenuBar</b> and various nested <b>JMenu</b> and
+            <b>JMenuItem</b> elements, dynamically populated and styled at runtime.<br>
+            3. <b>Event Listeners:</b> All menu items are tied to <b>ActionListeners</b>, triggering methods like
+            <b>openFileActionPerformed()</b>, <b>saveActionPerformed()</b>, etc.<br>
+            4. <b>Find/Replace Window:</b> A separate <b>JFrame</b> is instantiated with custom layout, checkboxes, text
+            fields, and event-handling for search and replacement logic.<br>
+            5. <b>Font and Style Application:</b> When a font or style is selected, the <b>currentFontName</b>,
+            <b>currentFontStyle</b>, and <b>currentFontSize</b> are updated and applied using the <b>Font</b> class.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>4. Technical Design Overview</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Core Class:</b> The entire editor is built around the <b>TextEditor</b> class which extends
+            <b>JFrame</b> and initializes components in the <b>initComponents()</b> method.<br>
+            2. <b>Modular Actions:</b> File, edit, format, and help actions are grouped into specific setup methods like
+            <b>setFileMenuActionListeners()</b> and <b>setFormatMenuActionListeners()</b>.<br>
+            3. <b>Color Mapping:</b> Background and font colors are applied using a <b>HashMap</b> that maps color names
+            to actual <b>Color</b> objects.<br>
+            4. <b>Safe Closure:</b> On window close, a confirmation dialog is shown using <b>JOptionPane</b> to avoid
+            accidental loss of unsaved work.<br>
+            5. <b>State Management:</b> The current open file is tracked by a <b>File filename</b> variable to
+            differentiate between Save and Save As actions.
+        </p>
+    </section>
+
+
+    <footer>
+        <p>&copy; 2025 Soumyadeep Banerjee. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

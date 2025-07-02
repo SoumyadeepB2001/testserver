@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soumyadeep Banerjee - Projects</title>
+    <link rel="stylesheet" href="css/projectstyle.css" />
+    <link rel="stylesheet" href="css/customscrollbar.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-content">
+                <h1>List of my projects</h1>
+                <nav>
+                    <a href="index.html">&larr; Back to homepage</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Grid Container -->
+    <div class="projects-container">
+
+        <!-- Project 1 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/microloom.png" alt="Microloom Project" class="project-image" />
+            <h2>Microloom: A Social Media Web Application</h2>
+            <h3 class="tech-stack">Tech Used: ASP.NET 4.8, C#, SignalR, HTML, CSS, JavaScript, Bootstrap, MS SQL Server
+            </h3>
+            <ul class="project-points">
+                <li>Implemented <b>authentication</b> and <b>authorization</b> via <b>cookies</b>; used <b>OTP
+                        verification</b> for password resets.</li>
+                <li><b>Implemented a follow-and-followers system</b>, enabling users to <b>follow others and be
+                        followed</b> for enhanced social interaction.</li>
+                <li>Enabled <b>post creation</b>, <b>reactions</b> (likes and dislikes), <b>sharing</b>, and
+                    <b>commenting</b>.
+                </li>
+                <li>Integrated <b>real-time messaging</b> with <b>SignalR</b> and built a <b>notification system</b> for
+                    user interactions.</li>
+                <li>Designed a <b>profile system</b> allowing users to <b>edit their profiles</b>, upload or remove
+                    <b>profile pictures</b>, and view interaction history.
+                </li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/Microloom-Social-Media">View code on GitHub
+                    &#8599;&#65039;</a>
+            </p>
+            <!-- <p class="more-links-heading"><a class="more-links" href="#">Read more &#128279;</a></p> -->
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/steganography.png" alt="Steganography Tool" class="project-image" />
+            <h2>Image and Audio Steganography Tool</h2>
+            <h3 class="tech-stack">Tech Used: Java (Core), Swing Framework</h3>
+            <ul class="project-points">
+                <li>Built a Java GUI app for <b>LSB steganography</b> to hide encrypted text in <b>PNG</b> and
+                    <b>WAV</b> files.
+                </li>
+                <li>Used <b>Caesar cipher</b> with a user-defined shift value; embedded <b>cipher key</b> within hidden
+                    data.</li>
+                <li>Applied object-oriented principles to manipulate <b>RGB pixel data</b> for <b>image-based
+                        steganography</b>.</li>
+                <li>Encoded hidden data into the <b>least significant bit</b> of the <b>least significant byte</b> in
+                    <b>WAV audio samples</b>, supporting <b>Little Endian format</b>.
+                </li>
+                <li>Implemented custom <b>decoding logic</b> for accurate extraction and decryption from image and audio
+                    files.</li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/LSB-Steganography">View code on GitHub &#8599;&#65039;</a>
+            </p>
+            <p class="more-links-heading"><a class="more-links" href="project_desc/steganography.html">Read more
+                    &#128279;</a></p>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/huffman.png" alt="Compression" class="project-image" />
+            <h2>Huffman Encoder and Decoder</h2>
+            <h3 class="tech-stack">Tech Used: Java (Core), Swing Framework</h3>
+            <ul class="project-points">
+                <li>Developed a Java-based <b>file compression</b> and <b>decompression tool</b> using <b>Huffman
+                        encoding</b> and a frequency-sorted Huffman tree.</li>
+                <li>Implemented custom <b>Huffman tree construction</b> based on byte frequency and lexicographic
+                    ordering for deterministic output.</li>
+                <li>Created a <code>.huff</code> file format that stores <b>compressed binary data</b> along with
+                    <b>metadata</b> like original extension and frequency table.
+                </li>
+                <li>Designed a <b>bit-level encoding system</b> with custom stream handling for accurate data
+                    representation.</li>
+                <li>Ensured <b>lossless restoration</b> during decompression by preserving structural and frequency
+                    integrity.</li>
+                <li>Built an intuitive <b>GUI</b> with Java Swing to support seamless file selection, compression, and
+                    decompression.</li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/Huffman-Compression">View code on GitHub
+                    &#8599;&#65039;</a>
+            </p>
+            <p class="more-links-heading"><a class="more-links" href="project_desc/huffman-encoder-decoder.html">Read
+                    more &#128279;</a></p>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/hotel.png" alt="HMS" class="project-image" />
+            <h2>Hotel Management System and Hotel Booking Website</h2>
+            <h3 class="tech-stack">Tech Used: ASP.NET 4.8, C#, HTML, CSS, JavaScript, Bootstrap, MS SQL Server</h3>
+            <ul class="project-points">
+                <li>The application offers modules for <b>room booking</b>, <b>cancellations</b>, <b>check-in/out</b>,
+                    <b>guest</b> and <b>employee management</b>, <b>inventory tracking</b>, and an <b>admin
+                        dashboard</b>.
+                </li>
+                <li><b>OTP-based authentication</b> is used during password recovery; an OTP is sent to the user's
+                    email, ensuring secure identity verification before reset.</li>
+                <li><b>Registration</b> is supported for both <b>hotel staff</b> and <b>website users</b>, with options
+                    like “Remember Me” for ease of login and user session persistence via <b>cookies</b>.</li>
+                <li>The system supports both <b>employee</b> and <b>customer portals</b>, ensuring streamlined
+                    interactions from both ends with intuitive UI layouts and guided navigation.</li>
+                <li>It provides <b>real-time data</b> on room availability and guest status, allowing efficient room
+                    allocation and operational decision-making.</li>
+                <li>Features like <b>form auto-fill</b> for returning guests, <b>validation controls</b>, and a
+                    <b>step-by-step booking flow</b> enhance usability and minimize input errors.
+                </li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/Hotel-Management-System-ASP.NET">View code on GitHub
+                    &#8599;&#65039;</a>
+            </p>
+            <p class="more-links-heading"><a class="more-links" href="project_desc/hms.html">Read more &#128279;</a></p>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/texteditor.png" alt="HMS" class="project-image" />
+            <h2>Text Editor</h2>
+            <h3 class="tech-stack">Tech Used: Java (Core), Swing Framework</h3>
+            <ul class="project-points">
+                <li>Developed a fully functional <b>Java-based text editor</b> with support for <b>creating</b>,
+                    <b>editing</b>, and <b>saving</b> text files.
+                </li>
+                <li>Implemented standard editing features including <b>undo/redo</b>, <b>cut</b>, <b>copy</b>,
+                    <b>paste</b>, and <b>print</b> with <b>keyboard shortcuts</b>.
+                </li>
+                <li>Designed a custom <b>Find and Replace</b> dialog with support for <b>case-sensitive search</b> and
+                    <b>batch replacement</b>.
+                </li>
+                <li>Enabled <b>rich text customization</b> with dynamic <b>font selection</b>, <b>styling</b>
+                    (<b>bold</b>, <b>italic</b>), <b>sizing</b>, and <b>color options</b>.</li>
+                <li>Added support for <b>runtime theming</b> with customizable <b>background</b> and <b>font colors</b>.
+                </li>
+                <li>Integrated <b>date/time insertion</b> at cursor position using Java’s
+                    <code><b>LocalDateTime</b></code> API.
+                </li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/Text-Editor">View code on GitHub &#8599;&#65039;</a>
+            </p>
+            <p class="more-links-heading"><a class="more-links" href="project_desc/text-editor.html">Read more
+                    &#128279;</a></p>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/blockbreaker.png" alt="blockbreaker" class="project-image" />
+            <h2>Block Breaker</h2>
+            <h3 class="tech-stack">Tech Used: Java (Core), Swing Framework</h3>
+            <ul class="project-points">
+                <li>Developed a Java-based brick breaker game using <b>Swing</b> for GUI and event handling, simulating
+                    classic arcade mechanics.</li>
+                <li>Implemented real-time <b>collision detection</b> between ball, paddle, and dynamically generated
+                    bricks.</li>
+                <li>Integrated <b>audio feedback</b> using the <b>Java Sound API</b> to enhance user interaction with
+                    custom sound effects.</li>
+                <li>Managed <b>game states</b> and <b>input handling</b> with key listeners and timers for smooth
+                    gameplay.</li>
+                <li>Utilized <b>object-oriented principles</b> to separate concerns like rendering, physics, and input.
+                </li>
+                <li>Designed <b>responsive paddle control</b> and <b>angle-based ball reflection logic</b> using
+                    <b>trigonometric functions (sin/cos)</b> for realistic movement.
+                </li>
+                <li>Built <b>win/lose conditions</b> and a <b>modular code structure</b> to support future enhancements
+                    or levels.</li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/Block-Breaker">View code on GitHub &#8599;&#65039;</a>
+            </p>
+            <p class="more-links-heading"><a class="more-links" href="project_desc/block-breaker.html">Read more
+                    &#128279;</a></p>
+        </div>
+
+        <!-- Project 7 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/minesweeper.png" alt="Minesweeper" class="project-image" />
+            <h2>Minesweeper</h2>
+            <h3 class="tech-stack">Tech Used: Java (Core), Swing Framework</h3>
+            <ul class="project-points">
+                <li><b>Safe First Click:</b> Mines are generated after the <b>first click</b>, ensuring it's always
+                    safe.</li>
+                <li><b>Auto-Reveal:</b> Clicking an empty tile triggers a <b>flood fill</b> to uncover nearby safe
+                    tiles.</li>
+                <li><b>Clean GUI:</b> A 14x14 grid with <b>colored buttons</b> and bold text for a smooth interface.
+                </li>
+                <li><b>Live Timer:</b> Displays <b>elapsed time</b> and tiles left, updating every second.</li>
+                <li><b>Click Controls:</b> Left-click reveals; right-click places or removes a <b>🚩 flag</b>.</li>
+                <li><b>Win/Loss Detection:</b> Shows 💥 on mines if clicked; declares <b>win</b> when all safe tiles are
+                    revealed.</li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/Minesweeper">View code
+                    on GitHub &#8599;&#65039;</a>
+            </p>
+            <p class="more-links-heading"><a class="more-links" href="project_desc/minesweeper.html">Read more
+                    &#128279;</a></p>
+        </div>
+
+        <!-- Project 8 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/news.png" alt="News and Weather website" class="project-image" />
+            <h2>News and Weather Website</h2>
+            <h3 class="tech-stack">Tech Used: HTML, CSS, Bootstrap, JavaScript, PHP</h3>
+            <ul class="project-points">
+                <li><b>Trending news</b> fetched using the <b>GNEWS API</b>.</li>
+                <li>Tabbed layout for <b>Top Headlines, Business, Politics, Sports, Entertainment,</b> and
+                    <b>Technology</b>.
+                </li>
+                <li><b>Search bar</b> to find news on specific topics.</li>
+                <li><b>Weather data</b> via <b>OpenWeatherMap API</b> showing current and forecast conditions.</li>
+                <li><b>PHP backend</b> to hide <b>API keys</b> and secure API calls..</li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/News-Weather-Website">View code on GitHub
+                    &#8599;&#65039;</a>
+            </p>
+            <p class="more-links-heading"><a class="more-links" href="project_desc/news.html">Read more &#128279;</a>
+            </p>
+        </div>
+
+        <!-- Project 9 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/dodge_obstacles.png" alt="Dodge The Obstacles"
+                class="project-image" />
+            <h2>Dodge The Obstacles</h2>
+            <h3 class="tech-stack">Tech Used: Java (Core), Swing Framework</h3>
+            <ul class="project-points">
+                <li><b>Player control</b> via arrow keys to switch between <b>5 lanes</b>.</li>
+                <li><b>Obstacles</b> generated randomly across lanes and move <b>downward</b> continuously.</li>
+                <li><b>Collision detection</b> ends the game with an <b>explosion sound</b> and a game over screen.</li>
+                <li><b>Scoring system</b> increases when obstacles leave the screen and plays a <b>score sound</b>.</li>
+                <li><b>Smooth animation</b> using a <b>Timer</b> with 10ms delay for consistent updates.</li>
+                <li><b>Images and sounds</b> loaded from <b>assets</b> folder for player, obstacles, road, and effects.
+                </li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/Dodge-The-Obstacles">View code on GitHub
+                    &#8599;&#65039;</a>
+            </p>
+            <p class="more-links-heading"><a class="more-links" href="project_desc/dodge-the-obstacles.html">Read more
+                    &#128279;</a></p>
+        </div>
+
+        <!-- Project 10 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/tiles.png" alt="Match The Tiles" class="project-image" />
+            <h2>Match The Tiles</h2>
+            <h3 class="tech-stack">Tech Used: Java (Core), Swing Framework</h3>
+            <ul class="project-points">
+                <li><b>Objective</b> of the game is to flip and match identical tile pairs to clear the entire board.
+                </li>
+                <li><b>20 tiles</b> arranged in a <b>5x4 grid</b> with 10 pairs of images.</li>
+                <li><b>Images revealed</b> for 3 seconds at the start, then hidden with a <b>wood texture</b>.</li>
+                <li>Click two tiles to <b>reveal and match</b>; matched pairs stay visible.</li>
+                <li><b>Move counter</b> updates after every tile pair selection.</li>
+                <li><b>Win condition</b> triggers a message once all tiles are matched.</li>
+                <li><b>Click sound effect</b> for feedback.</li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/Match-The-Tiles">View
+                    code on GitHub
+                    &#8599;&#65039;</a>
+            </p>
+            <p class="more-links-heading"><a class="more-links" href="project_desc/match-the-tiles.html">Read more
+                    &#128279;</a></p>
+        </div>
+
+        <!-- Project 11 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/eight_puzzle.png" alt="Eight Puzzle" class="project-image" />
+            <h2>Eight Puzzle (A* algorithm)</h2>
+            <h3 class="tech-stack">Tech Used: Java (Core), Swing Framework</h3>
+            <ul class="project-points">
+                <li>Objective of the game is to arrange numbered tiles in order by sliding them into the empty space.
+                </li>
+                <li>Designed and implemented an interactive desktop application for solving the classic <b>8-puzzle
+                        game</b> using the <b>A* algorithm</b>.</li>
+                <li>Built a custom <b>Java Swing GUI</b> that allows users to generate a random puzzle or manually
+                    configure the board.</li>
+                <li>Integrated <b>solvability checks</b> using inversion counting to ensure only valid puzzles are
+                    accepted.</li>
+                <li>Applied the <b>Manhattan distance heuristic</b> to guide the <b>A* algorithm</b> and visualized each
+                    intermediate puzzle state.</li>
+                <li>Included features like <b>move tracking</b>, <b>audio feedback</b>, and an <b>AI auto-solve mode</b>
+                    for enhanced interactivity.</li>
+                <li>Structured the project with a <b>modular architecture</b> separating UI, game logic, and AI
+                    components for maintainability.</li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/Eight-Puzzle">View
+                    code on GitHub
+                    &#8599;&#65039;</a>
+            </p>
+            <p class="more-links-heading"><a class="more-links" href="project_desc/eight-puzzle.html">Read more
+                    &#128279;</a></p>
+        </div>
+
+        <!-- Project 12 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/tictactoe.png" alt="Tic-Tac-Toe" class="project-image" />
+            <h2>Tic-Tac-Toe (Minimax algorithm)</h2>
+            <h3 class="tech-stack">Tech Used: Java (Core), Swing Framework</h3>
+            <ul class="project-points">
+                <li>Developed a <b>Java Swing</b>-based <b>Tic-Tac-Toe</b> game with support for <b>Player vs
+                        Player</b>, <b>Player vs AI</b>, and <b>AI vs Player</b> modes.</li>
+                <li>Implemented a strategic <b>AI opponent</b> powered by the <b>Minimax algorithm</b> for optimal
+                    gameplay.</li>
+                <li>The <b>AI</b> recursively simulates future moves, evaluates board states, and selects paths that
+                    guarantee a <b>win </b> or <b>draw</b>.</li>
+                <li>Provided a user-friendly interface allowing players to <b>choose turn order</b> dynamically before
+                    the game starts.</li>
+                <li>Built a clean, intuitive <b>GUI</b> with modular code design to support easy maintenance and future
+                    enhancements.</li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/Tic-Tac-Toe">View
+                    code on GitHub
+                    &#8599;&#65039;</a>
+            </p>
+            <p class="more-links-heading"><a class="more-links" href="project_desc/tic-tac-toe.html">Read more
+                    &#128279;</a></p>
+        </div>
+
+        <!-- Project 13 -->
+        <div class="project">
+            <img src="assets/project_cover_photos/filespiltmerge.png" alt="File Split Merge" class="project-image" />
+            <h2>File Split and Merge Utility Tool</h2>
+            <h3 class="tech-stack">Tech Used: Java (Core), Swing Framework</h3>
+            <ul class="project-points">
+                <li>Created a <b>Java Swing</b>-based GUI application to <b>split large files</b> into smaller parts and
+                    <b>reconstruct</b> them.</li>
+                <li>Designed and wrote <b>custom chunk headers</b> containing index, magic number, and size for accurate
+                    mapping.</li>
+                <li>Implemented <b>metadata generation</b> to preserve original file name, size, and number of chunks.
+                </li>
+                <li>Enabled <b>merge functionality</b> to work with or without metadata using <b>chunk-level
+                        validation</b>.</li>
+                <li>Used <b>HashMap-based indexing</b> to restore chunk order even when filenames are tampered.</li>
+                <li>Built in checks for <b>duplicate chunks, index gaps,</b> and <b>magic number mismatches</b> during
+                    merging.</li>
+                <li>Ensured <b>fault tolerance</b> by allowing users to proceed with merging even if metadata is
+                    corrupted.</li>
+            </ul>
+            <p class="more-links-heading"><a class="more-links"
+                    href="https://github.com/SoumyadeepB2001/File-Split-Merge">View code on GitHub &#8599;&#65039;</a>
+            </p>
+            <p class="more-links-heading"><a class="more-links" href="project_desc/file-split-merge.html">Read more
+                    &#128279;</a></p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Soumyadeep Banerjee. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

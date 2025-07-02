@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Block Breaker</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/customscrollbar.css">
+    <style>
+        p {
+            max-width: 100%;
+        }
+
+        .image-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            /* scales down on small screens */
+            height: auto;
+            /* keeps aspect ratio */
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-content">
+                <h1>Block Breaker</h1>
+                <nav>
+                    <a href="../index.html">&larr; Back to homepage</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>1. Introduction to Block Breaker</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            This is a <b>Java-based Block (Brick) Breaker game</b> built entirely using <b>Swing and AWT</b>. The objective is
+            simple yet engaging: the player controls a paddle to bounce a ball that destroys a wall of bricks. The game
+            ends when the player either breaks all bricks (win) or the ball falls below the paddle (game over).
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The game is interactive, animated using a <b>Swing Timer</b>, and incorporates <b>real-time collision
+                detection</b> and <b>sound effects</b> to provide immediate audio feedback on ball bounces and game
+            states.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Core Gameplay Features</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Paddle Control:</b> The player can move the paddle left and right using the keyboard's arrow keys.<br>
+            2. <b>Ball Launch:</b> The game begins when the UP arrow key is pressed, causing the ball to launch upward
+            from the paddle.<br>
+            3. <b>Brick Grid:</b> Bricks are arranged in a 2D grid and disappear when hit by the ball.<br>
+            4. <b>Game States:</b> The game ends either when all bricks are cleared (win) or the ball falls below the
+            screen (loss).<br>
+            5. <b>Sound Feedback:</b> Audio cues play for paddle hits, wall hits, brick breaks, game over, and win
+            events.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>3. How the Game Works Internally</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Animation Loop:</b> The <b>javax.swing.Timer</b> is set to trigger every 10ms and calls
+            <b>actionPerformed()</b> to update game logic and repaint the screen.<br>
+            2. <b>Ball Physics:</b> When the ball collides with the paddle, its bounce angle is determined using the
+            horizontal offset from the center of the paddle. The formula uses basic trigonometry to compute the
+            reflection angle:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;- The offset is normalized to a range between -1 and 1.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;- A bounce angle is then calculated as <b>angle = 45° × offset</b>.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;- This angle (in radians) is used to compute the new ball velocity:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• <b>ballXVelocity = speed × sin(angle)</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• <b>ballYVelocity = -speed × cos(angle)</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;- The sine function determines the horizontal (X) movement direction, while the
+            cosine function controls the vertical (Y) movement.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;- This ensures the bounce angle changes depending on where the ball hits the paddle
+            — hitting the edge results in a steeper angle, while hitting the center results in a near-vertical
+            bounce.<br>
+            3. <b>Collision Detection:</b> Uses <b>Rectangle</b> intersection checks to detect collisions with the
+            paddle, walls, and bricks.<br>
+            4. <b>Brick Removal:</b> Bricks are stored in an <b>ArrayList</b>. On collision, the brick is removed and
+            the ball's vertical direction is reversed.<br>
+            5. <b>Paddle Movement:</b> Boolean flags <b>moveLeft</b> and <b>moveRight</b> are toggled via
+            <b>KeyListener</b> and used in each frame to move the paddle.
+            <br>
+        <div class="video-wrapper">
+            <iframe width="940" height="529" src="https://www.youtube.com/embed/EQ5BtAFjebo" title="Block Breaker Demo"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>4. Technical Design Overview</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Custom JPanel:</b> The entire game view is painted inside a subclass of <b>JPanel</b>, where all
+            rendering happens in the overridden <b>paint()</b> method.<br>
+            2. <b>Real-Time Graphics:</b> The game is double-buffered using Swing’s default mechanism, ensuring smooth
+            visuals at 100 FPS.<br>
+            3. <b>Sound Playback:</b> The <b>playSound()</b> method loads <b>.wav files</b> and uses the <b>Clip</b>
+            class from <b>javax.sound.sampled</b> to play audio effects.<br>
+            4. <b>Brick Generation:</b> Bricks are dynamically generated with calculated positions using looped rows and
+            columns, based on panel width.<br>
+            5. <b>Game Reset:</b> If the player wins or loses, a <b>JOptionPane</b> displays a message and the
+            application exits using <b>System.exit(0)</b>.
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Soumyadeep Banerjee. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+/*Custom scroll-bar*/
+/* width */
+::-webkit-scrollbar {
+    width: 14px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #c1f0e8;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #3b99d8, #28cfae);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #248ed4, #09a384);
+  }

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eight Puzzle</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/customscrollbar.css">
+    <style>
+        p {
+            max-width: 100%;
+        }
+
+        .image-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-content">
+                <h1>Eight Puzzle</h1>
+                <nav>
+                    <a href="../index.html">&larr; Back to homepage</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>1. Introduction</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            <b>Eight Puzzle</b> is a classic 3×3 logic-based tile rearrangement game developed using <b>Java
+                Swing</b>. The player is presented with 8 numbered tiles and one empty tile in a 3×3 grid. The goal is
+            to slide the tiles into the correct order (1 to 8), using the empty space strategically. The player clicks
+            on tiles adjacent to the empty space to swap their positions.
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The game features randomized tile generation, manual board configuration, move tracking, sound effects, and
+            an interactive GUI layout. It challenges the player’s spatial reasoning and memory through tile movements
+            and logical decisions. An <b>AI auto-solve</b> mode using the <b>A* algorithm</b> is also included for
+            demonstration and benchmarking.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Core Features</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>3×3 Grid Layout:</b> The board is implemented as a 3×3 grid with 9 <b>JButton</b> tiles.<br>
+            2. <b>Randomized or Custom Start:</b> Tiles numbered 1–8 and one empty slot can be shuffled or
+            user-defined.<br>
+            3. <b>Empty Tile:</b> Represented using the number 0, which is made invisible to simulate the sliding
+            effect.<br>
+            4. <b>Tile Movement:</b> Only tiles directly adjacent (left, right, top, bottom) to the empty tile are
+            eligible to move.<br>
+            5. <b>Sound Effects:</b> Each valid move plays a wood-click audio to enhance interactivity.<br>
+            6. <b>Move Tracking:</b> A live label updates the number of user moves.<br>
+            7. <b>AI Solver:</b> Includes an automatic solver using the <b>A* search algorithm</b> with animated
+            solution replay.<br>
+            8. <b>Solvability Check:</b> Generated puzzles are always validated for solvability using inversion count
+            logic before being accepted.<br>
+            9. <b>Manual Board Validation:</b> User-configured boards are also checked in real-time to prevent
+            unsolvable setups before the game starts.
+        </p>
+        <br>
+        <div class="video-wrapper">
+            <iframe width="940" height="529" src="https://www.youtube.com/embed/1-jnAkSfSzY" title="Eight Puzzle Demo"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>3. How Tile Movement Logic Works</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Empty Tile Index:</b> The index of the invisible (empty) tile is tracked using
+            <b>indexOfCurrentEmptyTile</b>.<br><br>
+            2. <b>Valid Moves:</b> When a tile is clicked, the program checks if its index is one of the four adjacent
+            positions to the empty tile:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• <b>Up:</b> index - 3<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• <b>Down:</b> index + 3<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• <b>Left:</b> index - 1 (only if not on the left edge)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• <b>Right:</b> index + 1 (only if not on the right edge)<br><br>
+            3. <b>Edge Cases:</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• Left swaps are blocked if the empty tile is at column 0.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• Right swaps are blocked if the empty tile is at column 2.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>4. Tile Swapping Mechanism</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Swap Execution:</b> If the clicked tile is adjacent, the <b>swapButtons()</b> method is called.<br>
+            2. <b>Swap Actions:</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The text from the clicked tile is transferred to the empty tile.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The clicked tile is hidden (setVisible(false)).<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The previously empty tile becomes visible again.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The index of the empty tile is updated accordingly.<br>
+            3. <b>Move Counter:</b> After every successful move, the counter increments and updates the <b>Moves:</b>
+            label.<br>
+            4. <b>Sound Feedback:</b> A wood-click sound is played after every tile slide to enhance user experience.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>5. Technical Structure Overview</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Grid Setup:</b> The 3×3 board is constructed using a <b>JPanel</b> with <b>GridLayout(3, 3)</b> and
+            contains 9 JButton tiles.<br>
+            2. <b>Text & Icons:</b> Each tile displays a number (1–8), while tile 0 is hidden and acts as the movable
+            space.<br>
+            3. <b>Shuffling:</b> A randomized or user-defined <b>ArrayList</b> of numbers is used to initialize the
+            board.<br>
+            4. <b>Listeners:</b> Action listeners are added to each tile to handle click events and trigger movement
+            logic.<br>
+            5. <b>Menu System:</b> Includes <b>Options</b> and <b>Help</b> menus with features for New Game, Exit,
+            Rules, Contact, and About.<br>
+            6. <b>Auto-Solver:</b> Clicking "Auto solve using AI" runs the A* algorithm and animates the solution
+            step-by-step.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>6. How the A* Algorithm Works</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The <b>A* algorithm</b> is an informed search method that finds the shortest solution path from a given
+            puzzle configuration to the goal state. Here's how it functions in this project:
+        </p>
+        <ul>
+            <li><b>State Representation:</b> The board is modeled as a 1D array of 9 integers (0–8), where 0 represents
+                the empty tile.</li>
+            <li><b>Goal Test:</b> The target configuration is [1, 2, 3, 4, 5, 6, 7, 8, 0].</li>
+            <li><b>Heuristic (h):</b> Manhattan distance is calculated as the sum of vertical and horizontal distances
+                between each tile's current and target position.
+                <p style="text-align: justify; text-justify: inter-word;">
+                    The <b>Manhattan distance</b> for each tile is calculated as:<br><br>
+                    <code>Manhattan Distance = |currentRow - goalRow| + |currentCol - goalCol|</code><br><br>
+                    For all tiles, the total heuristic <b>h(n)</b> is the sum of their individual distances from the
+                    goal positions, excluding the blank tile (0).
+                </p>
+            </li>
+            <li><b>Cost (g):</b> The number of steps taken from the initial state to the current state.</li>
+            <li><b>Total Cost (f = g + h):</b> States are prioritized in a min-heap (PriorityQueue) using this total
+                estimated cost.</li>
+            <li><b>Neighbor Expansion:</b> All valid moves from the current state are generated by swapping 0 with its
+                adjacent tiles.</li>
+            <li><b>Visited Tracking:</b> States are hashed and stored to avoid cycles and redundant exploration.</li>
+            <li><b>Path Reconstruction:</b> Once the goal is found, a backward traversal using parent pointers
+                reconstructs the solution path, which is then animated in the GUI.</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Soumyadeep Banerjee. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

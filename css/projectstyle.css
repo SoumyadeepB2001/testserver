@@ -1,0 +1,196 @@
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #1abc9c;
+    --text-color: #444;
+    --bg-color: #ebf7f5;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.5;
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin: 0;
+}
+
+nav {
+    margin-top: 0.75rem;
+}
+
+nav a {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    font-size: 0.95rem;
+}
+
+nav a:hover {
+    border-color: var(--accent-color);
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.more-links-heading {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin: 0.2rem 0 0.8rem 0;
+}
+
+.more-links,
+.more-links:visited,
+.more-links:active,
+.more-links:focus {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+.more-links:hover,
+.more-links:visited:hover,
+.more-links:active:hover,
+.more-links:focus:hover {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.tech-stack {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #666;
+    margin: 0.2rem 0 0.8rem 0;
+}
+
+.project {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px rgba(26, 188, 156, 0.12);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: justify;
+}
+
+.project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0;
+    background: linear-gradient(135deg, #3498db, #1abc9c);
+    transition: height 0.4s ease;
+}
+
+.project:hover::before {
+    height: 100%;
+}
+
+.project:hover {
+    background-color: #e0f7f4;
+}
+
+.project h2 {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-bottom: 0.4rem;
+    position: relative;
+}
+
+.project h2::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: var(--accent-color);
+    margin-top: 0.25rem;
+    border-radius: 2px;
+}
+
+.project-image {
+    width: 100%;
+    height: 230px;
+    object-fit:scale-down;
+    border-radius: 5px;
+    border: 3px solid var(--accent-color);
+    margin-bottom: 0.8rem;
+}
+
+.project-points {
+    padding-left: 1rem;
+    margin-top: 0.8rem;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.project-points li {
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1rem;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    border-top: 1px solid #eee;
+}
+
+@media (max-width: 600px) {
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+
+    body {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .project {
+        padding: 0.75rem;
+        text-align: left;
+        background-color: #e0f7f4;
+    }
+
+    .project h2 {
+        font-size: 1.1rem;
+    }
+
+    .project-image {
+        height: 120px;
+    }
+
+    .project::before {
+        height: 100%; 
+    }
+
+    .project:hover::before {
+        height: 100%; 
+    }
+}

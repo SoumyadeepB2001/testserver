@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/customscrollbar.css">
+    <style>
+        p {
+            max-width: 100%;
+        }
+
+        .image-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            /* scales down on small screens */
+            height: auto;
+            /* keeps aspect ratio */
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-content">
+                <h1>Minesweeper</h1>
+                <nav>
+                    <a href="../index.html">&larr; Back to homepage</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>1. Introduction to Minesweeper</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            This is a <b>Java Swing implementation of Minesweeper</b>, a classic logic puzzle game where the objective
+            is to reveal all non-mine tiles on a grid while avoiding hidden bombs. The game includes features such as
+            <b>first-click safety</b>, <b>flagging mines</b>, <b>game timer</b>, and full <b>GUI interaction</b> through
+            left and right mouse clicks.
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The game grid consists of <b>14 × 14 tiles</b>, with <b>30 randomly placed mines</b>. On the first click,
+            mines are generated such that the clicked tile is always safe. The interface is responsive and uses a
+            <b>Swing Timer</b> to track elapsed time and remaining tiles.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Gameplay Features</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Safe First Click:</b> Mines are generated only after the first tile is clicked, ensuring the first
+            move is never fatal.<br>
+            2. <b>Tile Flagging:</b> Right-click toggles a flag emoji (🚩) to mark suspected mines.<br>
+            3. <b>Dynamic Timer:</b> A real-time timer displays elapsed seconds and updates the count of unrevealed
+            non-mine tiles.<br>
+            4. <b>Loss Detection:</b> If a mine is revealed, all mines are shown (💥), the timer stops, and the game
+            resets.<br>
+            5. <b>Victory Condition:</b> Revealing all non-mine tiles triggers a win dialog with the time taken.
+        </p>
+        <br>
+        <div class="video-wrapper">
+            <iframe width="940" height="529" src="https://www.youtube.com/embed/DNlPrZ4dl5c" title="Minesweeper Demo"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>3. How the Flood Fill Algorithm Works</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The flood fill algorithm is used to automatically reveal a group of adjacent empty tiles (tiles with <b>0
+                adjacent mines</b>) after a tile is clicked. This mimics how traditional Minesweeper games uncover large
+            empty areas.
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The process is implemented recursively in the <b>floodfill()</b> method and works as follows:
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Base Cases:</b> The function exits immediately if:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The cell is out of bounds.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The cell is already visited.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The cell contains a mine (value -1).
+            <br><br>
+            2. <b>Visitation Mark:</b> The current tile is marked as visited to prevent infinite loops.
+            <br><br>
+            3. <b>Empty Tile (0):</b> If the tile has no adjacent mines:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• It is revealed (blank with white background).<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The method is recursively called on all 8 neighboring tiles.
+            <br><br>
+            4. <b>Numbered Tile (1–8):</b> If the tile has adjacent mines:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The number is displayed and the tile is revealed.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• Recursion halts in this direction to avoid exposing more tiles.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>4. Technical Design Overview</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Grid Construction:</b> A <b>GridLayout</b> of <b>JButtons</b> is used to build the 14×14 tile
+            board.<br>
+            2. <b>Mine Placement:</b> A shuffled 1D list is trimmed to the desired mine count and then mapped into 2D
+            board indices.<br>
+            3. <b>Board State Array:</b> A 2D array <b>boardState[][]</b> tracks cell status: -1 for mines, 0 for empty,
+            and 1–8 for adjacent mine counts.<br>
+            4. <b>Mouse Events:</b> Each button has a <b>MouseListener</b> that distinguishes left-click (reveal/flood
+            fill) and right-click (flag toggle).<br>
+            5. <b>Timer & Status Bar:</b> A <b>JLabel</b> shows live updates for time and unrevealed tile count, driven
+            by a <b>Swing Timer</b>.
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Soumyadeep Banerjee. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

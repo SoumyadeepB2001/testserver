@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dodge The Obstacles</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/customscrollbar.css">
+    <style>
+        p {
+            max-width: 100%;
+        }
+
+        .image-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            /* scales down on small screens */
+            height: auto;
+            /* keeps aspect ratio */
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-content">
+                <h1>Dodge The Obstacles</h1>
+                <nav>
+                    <a href="../index.html">&larr; Back to homepage</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>1. Introduction</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            This is a <b>lane-based car dodging game</b> developed in <b>Java Swing</b>. The player controls a car that
+            moves left or right across five lanes to avoid incoming traffic. Each obstacle is a randomly generated
+            vehicle, and the game speeds up over time, increasing the challenge. The game ends upon collision,
+            displaying an explosion effect and the player's score.
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The game features animated sprites, multiple obstacle lanes, real-time movement, collision detection, sound
+            effects, and a custom <b>Game Over</b> sequence. Assets include car images, road background, explosion
+            graphics, and sound effects.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Key Features</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Lane Movement:</b> The player moves the car left or right using arrow keys across 5 predefined
+            lanes.<br>
+            2. <b>Random Obstacle Generation:</b> Obstacles appear randomly in lanes at fixed intervals and scroll
+            downward.<br>
+            3. <b>Collision Detection:</b> If a player's car overlaps with an obstacle vertically within the same lane,
+            the game ends.<br>
+            4. <b>Scoring System:</b> Points are awarded when obstacles leave the screen without hitting the player.<br>
+            5. <b>Sound Feedback:</b> Background sounds include collision, explosion, and scoring beeps.<br>
+            6. <b>Dynamic Animation:</b> All images are rendered and updated using the <b>paint()</b> method and a Swing
+            Timer.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>3. How the Game Logic Works</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Timer-Driven Updates:</b> A <b>Swing Timer</b> triggers every 10 milliseconds, calling
+            <b>actionPerformed()</b> to update obstacle positions, spawn new ones, and refresh the screen.<br><br>
+            2. <b>Obstacle Generation:</b> At every spawn interval, the game randomly chooses which lanes receive new
+            obstacle cars, adding them at the top of the screen.<br><br>
+            3. <b>Obstacle Motion:</b> Obstacles in all five lanes are stored in separate
+            <b>ArrayList&lt;Integer&gt;</b>s that track their Y-axis positions. These values are incremented each frame
+            to simulate falling movement.<br><br>
+            4. <b>Obstacle Cleanup + Scoring:</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The method <b>remove_obstacles()</b> runs continuously to check if the first
+            obstacle in each lane has moved off the screen (Y > 600).<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• If so, that obstacle is removed from the list, and the score is incremented.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• This ensures <b>memory efficiency</b> and <b>prevents unnecessary collision
+                checks</b> on invisible objects.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• A score sound is played every time an obstacle is successfully dodged.<br><br>
+            5. <b>Player Position:</b> The player moves in 100-pixel steps (lane-sized) left or right, and boundaries
+            are enforced to keep the player within the screen limits.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>4. How Game Over Works (Collision + Stack Safety)</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Collision Detection:</b> The <b>check_collision()</b> method calculates the player's vertical
+            boundaries and compares them with the top and bottom Y-coordinates of the nearest 1–2 obstacles in the same
+            lane.<br>
+            2. <b>Overlap Check:</b> A collision is detected if the obstacle and the player overlap vertically, i.e.,
+            if:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b>obstacle_top ≤ player_bottom</b> and <b>player_top ≤ obstacle_bottom</b>.<br><br>
+            3. <b>Triggering Game Over:</b> When a collision is found, the <b>endGame()</b> method is called.<br><br>
+            4. <b>Overlap Prevention:</b> To prevent multiple calls to <b>endGame()</b> (due to frame repaint overlaps
+            or event queue flooding), the following logic is used:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The method starts with a guard clause: <b>if (gameOver) return;</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• This ensures that the game logic halts at the first execution and ignores all
+            stacked repaint/collision calls that come after.<br><br>
+            5. <b>Game Over Effects:</b> When triggered:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The <b>timer stops</b>.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The player’s car image changes to an explosion.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• A <b>“Game Over” dialog</b> is displayed showing the final score.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• The application exits immediately using <b>System.exit(0)</b>.
+        </p>
+        <br>
+        <div class="video-wrapper">
+            <iframe width="940" height="529" src="https://www.youtube.com/embed/wsP1OZrzemU"
+                title="Dodge The Obstacles Demo" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>5. Technical Design Summary</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Graphics Rendering:</b> All visual updates occur in the overridden <b>paint(Graphics g)</b> method,
+            redrawing the road, obstacles, and player sprite.<br>
+            2. <b>Event Handling:</b> The game listens for <b>KeyEvent</b> for player input and <b>ActionEvent</b> for
+            timed updates.<br>
+            3. <b>Object Management:</b> Obstacles are stored per lane using five <b>ArrayList&lt;Integer&gt;</b>
+            collections that track Y-positions.<br>
+            4. <b>Sound Engine:</b> Sounds are triggered using <b>AudioInputStream</b> and <b>Clip</b> from
+            <b>javax.sound.sampled</b>.<br>
+            5. <b>Player Restrictions:</b> The car is prevented from moving out of bounds horizontally by boundary
+            checks before repainting.
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Soumyadeep Banerjee. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

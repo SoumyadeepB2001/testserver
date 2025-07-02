@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Management System and Hotel Booking Website</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/customscrollbar.css">
+    <style>
+        p {
+            max-width: 100%;
+        }
+
+        .image-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            /* scales down on small screens */
+            height: auto;
+            /* keeps aspect ratio */
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-content">
+                <h1>Hotel Management System and Hotel Booking Website</h1>
+                <nav>
+                    <a href="../index.html">&larr; Back to homepage</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>1. Introduction</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            This project is a comprehensive <b>Hotel Booking and Management System</b> that offers a seamless experience
+            for both <b>guests</b> and <b>hotel staff</b>. Guests can <b>book</b> or <b>cancel rooms</b> easily, while
+            staff can handle <b>check-ins</b>, <b>check-outs</b>, <b>room tracking</b>, and <b>employee management</b>.
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The system is divided into two major modules: the <b>Hotel Management System (HMS)</b> for staff and
+            administrators, and the <b>Hotel Booking Website</b> for customers. Key features include <b>reservation
+                handling</b>, <b>inventory management</b>, <b>employee control</b>, <b>feedback collection</b>, and
+            more.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Functional Requirements and Application Modules</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Login and Registration:</b> Secure login system with <b>remember me</b>, <b>forgot password</b>, and
+            <b>OTP verification</b>.<br>
+            2. <b>Authentication and Authorization:</b> User authentication and access control using <b>cookies</b> and
+            <b>session management</b> for secure module access.<br>
+            3. <b>Home Page:</b> Shows <b>today's check-ins</b> and <b>check-outs</b> with counters and access
+            buttons.<br>
+            4. <b>Bookings:</b> Features for <b>room booking</b>, <b>viewing bookings</b>, <b>cancellations</b>, and
+            <b>cancelled booking history</b>.<br>
+            5. <b>Guests:</b> Guest <b>check-in</b>, <b>check-out</b>, and full <b>guest information</b> listing.<br>
+            6. <b>Rooms:</b> List and manage all <b>available room details</b>.<br>
+            7. <b>Employees:</b> View <b>current</b>, <b>managerial</b>, and <b>ex-employees</b>.<br>
+            8. <b>Inventory:</b> Track and manage <b>hotel inventory items</b>.<br>
+            9. <b>Messages:</b> See messages from customers via the website.<br>
+            10. <b>User Settings:</b> Allows users to <b>change password</b>, <b>delete account</b>, and
+            <b>logout</b>.<br>
+            11. <b>Admin Panel:</b> Admin access to <b>room, employee, and user management</b>, including
+            <b>adding/editing</b> departments, room types, and bed types.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>3. Hotel Booking Website</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Sign-in and Registration:</b> Includes <b>new user sign-up</b>, <b>remember me</b>, and <b>forgot
+                password with OTP</b>.<br>
+            2. <b>User Profile:</b> Manage personal details, <b>change password</b>, and <b>sign out</b>.<br>
+            3. <b>Book a Room:</b> Customers can <b>search and book rooms</b> based on check-in/check-out date and
+            guests.<br>
+            4. <b>Contact Us:</b> Allows users to <b>send messages</b>, view <b>contact info</b>, and see <b>Google
+                Map</b> location.<br>
+            5. <b>Pages:</b> Includes <b>Home</b>, <b>About</b>, <b>Rooms</b>, <b>Services</b>, and <b>Gallery</b>.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>4. Database Design</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The system uses a database named <b>HotelManagementSystem</b> with normalized tables and referential
+            integrity via <b>foreign keys</b>.
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            Key tables include:<br>
+            - <b>departments</b>, <b>designations</b>, and <b>employees</b>: Define employee structure and
+            relationships.<br>
+            - <b>users</b> and <b>website_users</b>: Handle authentication and roles.<br>
+            - <b>bed_types</b>, <b>room_types</b>, and <b>rooms</b>: Manage room classification.<br>
+            - <b>inventory</b>: Tracks hotel stock items.<br>
+            - <b>guest_info</b>, <b>bookings</b>, and <b>cancelled_bookings</b>: Track guest data and reservations.<br>
+            - <b>user_messages</b>: Stores feedback from the website.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>5. Module Details</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            - <b>Module 1:</b> Secure <b>Login/Registration</b> with OTP reset.<br>
+            - <b>Module 2:</b> <b>Home page</b> with check-in/out count.<br>
+            - <b>Module 3:</b> <b>Bookings</b> with sub-modules for booking, viewing, cancelling, and listing
+            cancellations.<br>
+            - <b>Module 4:</b> <b>Guest Management</b> including check-in, check-out, history, and info list.<br>
+            - <b>Module 5:</b> Room overview and management.<br>
+            - <b>Module 6:</b> <b>Employees</b> list and role-based views.<br>
+            - <b>Module 7:</b> <b>Inventory</b> tracking and management.<br>
+            - <b>Module 8:</b> <b>Customer messages</b> handling.<br>
+            - <b>Module 9:</b> <b>User settings</b> – password, account deletion, and logout.<br>
+            - <b>Module 10:</b> <b>Admin panel</b> including:<br>
+            &emsp; - Room management (add/edit rooms, types, beds)<br>
+            &emsp; - Employee management (add/search/edit/terminate)<br>
+            &emsp; - Department/designation management<br>
+            &emsp; - User management (add/edit/delete users and assign admin rights)
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>6. Screenshots</h2>
+
+        <h2>Management system for hotel employees</h2>
+
+        <p><b>Login Page:</b> Registered employees can log in with email and password.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image1.png">
+        </div>
+
+        <p><b>Forgot Password:</b> Reset password with employee ID and OTP.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image2.png">
+        </div>
+
+        <p><b>Enter OTP:</b> Enter received OTP and set new password.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image3.png">
+        </div>
+
+        <p><b>New Account Registration:</b> Register as a new employee using your ID and password.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image4.png">
+        </div>
+
+        <p><b>Home Page:</b> Overview of today's check-ins and check-outs.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image5.png">
+        </div>
+
+        <p><b>Today's Check-ins:</b> List of guests scheduled to check-in today.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image6.png">
+        </div>
+
+        <p><b>Today's Check-outs:</b> List of guests scheduled to check-out today.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image7.png">
+        </div>
+
+        <p><b>Bookings Menu:</b> Dropdown list of booking options.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image8.png">
+        </div>
+
+        <p><b>Book a Room:</b> Booking form begins with guest search.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image9.png">
+        </div>
+
+        <p><b>No Guest Record Found:</b> Alert for non-existent guest records.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image10.png">
+        </div>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image11.png">
+        </div>
+
+        <p><b>Room Availability:</b> Checking for available rooms before booking.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image12.png">
+        </div>
+
+        <p><b>Select Room:</b> Choose a preferred available room.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image13.png">
+        </div>
+
+        <p><b>Booking Form:</b> Fill guest and room details to confirm booking.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image14.png">
+        </div>
+
+        <p><b>All Bookings:</b> View the list of all bookings made so far.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image15.png">
+        </div>
+
+        <p><b>Cancel Bookings:</b> Cancel unconfirmed bookings.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image16.png">
+        </div>
+
+        <p><b>Cancelled Bookings:</b> View a list of cancelled bookings.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image17.png">
+        </div>
+
+        <p><b>Guest Check-in:</b> Check in guests from the guest section.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image18.png">
+        </div>
+
+        <p><b>Guest Check-out:</b> Check out guests from the guest section.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image19.png">
+        </div>
+
+        <p><b>Guest Checkout History:</b> View previously checked-out guests.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image20.png">
+        </div>
+
+        <p><b>All Guest Information:</b> Complete guest list and info.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image21.png">
+        </div>
+
+        <p><b>Room Information:</b> View various room types available in the hotel.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image22.png">
+        </div>
+
+        <p><b>Current Employees:</b> List of currently employed hotel staff.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image23.png">
+        </div>
+
+        <p><b>Current Managers:</b> View the current hotel managers.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image24.png">
+        </div>
+
+        <p><b>Ex-Employees:</b> List of previously terminated or resigned employees.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image25.png">
+        </div>
+
+        <p><b>Inventory:</b> View and manage the hotel inventory items.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image26.png">
+        </div>
+
+        <p><b>Customer Messages:</b> Messages received from hotel website.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image27.png">
+        </div>
+
+        <p><b>Change Password:</b> Update the current user password.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image28.png">
+        </div>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image29.png">
+        </div>
+
+        <p><b>Password Changed Alert:</b> Notification after password change.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image30.png">
+        </div>
+
+        <p><b>Delete Account:</b> Option to permanently delete the employee account.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image31.png">
+        </div>
+
+        <p><b>Admin Panel Access:</b> Admin-only access page.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image32.png">
+        </div>
+
+        <p><b>Admin Menu:</b> Admin navigation bar and options.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image33.png">
+        </div>
+
+        <p><b>Room Management:</b> Add, edit, or delete room details.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image34.png">
+        </div>
+
+        <p><b>Add/Edit Room Info:</b> Form to manage room data.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image35.png">
+        </div>
+
+        <p><b>Add/Edit Bed & Room Types:</b> Configure bed and room types.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image36.png">
+        </div>
+
+        <p><b>Add Employee:</b> Form to add a new employee to the system.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image37.png">
+        </div>
+
+        <p><b>Edit Employee Info:</b> Search and update employee records.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image38.png">
+        </div>
+
+        <p><b>Terminate Employee:</b> Remove an employee from the system.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image39.png">
+        </div>
+
+        <p><b>Departments & Designations:</b> Manage roles and departments in the hotel.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image40.png">
+        </div>
+
+        <p><b>User Management:</b> Manage user accounts and privileges.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image41.png">
+        </div>
+
+        <p><b>Add New User:</b> Form to add new users.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image42.png">
+        </div>
+
+        <p><b>Update/Delete User:</b> Search and manage user accounts.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image43.png" alt="Update Delete User">
+        </div>
+
+        <p><b>Return to Main Page:</b> Redirects admin back to the main dashboard.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image44.png">
+        </div>
+
+        <h2>Booking website for customers</h2>
+
+        <p><b>Customer Home Page:</b> Website homepage for hotel guests.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image45.png">
+        </div>
+
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image46.png">
+        </div>
+
+        <p><b>Favourite Rooms:</b> View of top-rated rooms with image slider.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image47.png">
+        </div>
+
+        <p><b>Services Page:</b> Shows list of hotel services provided to guests.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image48.png">
+        </div>
+
+        <p><b>Gallery Page:</b> Image gallery of the hotel and rooms.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image49.png">
+        </div>
+
+        <p><b>Contact Us:</b> Form for guests to send messages to hotel staff.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image50.png">
+        </div>
+
+        <p><b>Customer Login Page:</b> Page for guest sign-in to booking website.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image51.png">
+        </div>
+
+        <p><b>Customer Registration Page:</b> Guests can register a new account.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image52.png">
+        </div>
+
+        <p><b>Forgot Password:</b> Send an OTP to the registered email id to reset password.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image53.png">
+        </div>
+
+        <p><b>Check For Availability</b> Search available rooms by selecting check-in and check-out dates, along with
+            the number of adults and children.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image54.png">
+        </div>
+
+        <p><b>Select room:</b> Select an available room from the list.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image55.png">
+        </div>
+
+        <p><b>Confirm booking:</b> Confirm your booking.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image56.png">
+        </div>
+
+        <p><b>Booking Confirmed.</b></p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image57.png">
+        </div>
+
+        <p><b>User Account.</b></p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image58.png">
+        </div>
+
+        <p><b>Edit User Information.</b></p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image59.png">
+        </div>
+
+        <p><b>View a list of past and future bookings: </b>The user can cancel future bookings if needed.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image60.png">
+        </div>
+
+        <p><b>Change Account Password: </b>Change account password with the help of current password.</p>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image61.png">
+        </div>
+
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/hotel/image62.png">
+        </div>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Soumyadeep Banerjee. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

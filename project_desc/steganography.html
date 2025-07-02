@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image and Audio Steganography Tool</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/customscrollbar.css">
+    <style>
+        p {
+            max-width: 100%;
+        }
+
+        .image-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            /* scales down on small screens */
+            height: auto;
+            /* keeps aspect ratio */
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-content">
+                <h1>Image and Audio Steganography Tool</h1>
+                <nav>
+                    <a href="../index.html">&larr; Back to homepage</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>1. Introduction to Steganography</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            <b>Steganography</b> is the art of concealing information within other seemingly innocuous media—such as
+            <b>images</b> or
+            <b>audio files</b>—so that the very existence of the hidden message remains secret. Unlike
+            <b>encryption</b>, which
+            obscures the contents of a message, steganography hides the message in plain sight.
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            This <b>software application</b> is a modern demonstration of digital steganography, enabling users to hide
+            <b>encrypted text messages</b> within image or audio files, and later retrieve them securely.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Core Features of the Application</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Dual Media Support</b>: Supports encoding and decoding hidden messages in both <b>image</b> (.png,
+            .jpg, .jpeg) and
+            <b>audio</b> (.wav) files.<br>
+            2. <b>Caesar Cipher Encryption</b>: Messages are first encrypted using the Caesar cipher before being
+            embedded,
+            adding an extra layer of <b>security</b>.<br>
+            3. <b>Graphical User Interface (GUI)</b>: Built with <b>Java Swing</b>, the application features a
+            <b>user-friendly interface</b>
+            for seamless interaction.<br>
+            4. <b>Navigation Panel</b>: A top navigation bar allows switching between <b>Image Encode</b>, <b>Image
+                Decode</b>, <b>Audio Encode</b>,
+            and <b>Audio Decode</b> sections.<br>
+            5. <b>Shift Recovery</b>: The shift used in Caesar cipher encryption is also embedded and recovered during
+            decoding.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>3. How Image Steganography Works</h2>
+        <h3>Encoding Process:</h3>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Message Input</b>: The user enters a secret message and selects a Caesar cipher shift value.<br>
+            2. <b>Image Selection</b>: A compatible image file is selected.<br>
+            3. <b>Encryption</b>: The message is encrypted using the Caesar cipher.<br>
+            4. <b>Binary Conversion</b>: The encrypted text, along with the cipher shift value, is converted to binary
+            format.<br>
+            5. <b>LSB Embedding</b>: Each bit of the binary message is embedded into the <b>Least Significant Bits
+                (LSBs)</b> of the
+            red, green, and blue channels of the image pixels.<br>
+            6. <b>Output</b>: A new image file is generated containing the hidden message.<br>
+            <div class="image-wrapper">
+                <img src="../assets/project_photos/steganography/image-encode.png" alt="Image Encoding Panel">
+            </div>
+            
+        </p>
+        <h3>Decoding Process:</h3>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Image Selection</b>: The user loads the encoded image.<br>
+            2. <b>Bit Extraction</b>: The application extracts LSBs from each pixel and reconstructs the binary
+            message.<br>
+            3. <b>Marker Detection</b>: Special binary markers indicate where the message and cipher shift end.<br>
+            4. <b>Decryption</b>: The extracted encrypted message is decrypted using the recovered shift value.<br>
+            5. <b>Result Display</b>: The original hidden message is displayed in the GUI.<br>
+            <div class="image-wrapper">
+                <img src="../assets/project_photos/steganography/image-decode.png" alt="Image Decoding Panel">
+            </div>
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>4. How Audio Steganography Works</h2>
+        <h3>Encoding Process:</h3>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Message Input</b>: Similar to image encoding, the user provides a message and a Caesar shift
+            value.<br>
+            2. <b>Audio File Selection</b>: A .wav file is chosen.<br>
+            3. <b>Encryption & Conversion</b>: The message is encrypted and converted to binary.<br>
+            4. <b>Embedding</b>: Binary bits are embedded into the least significant bits (LSBs) of the least
+            significant bytes (LSBytes) of audio samples, which are stored in Little Endian format.<br>
+            5. <b>Output</b>: A new .wav file is saved, which sounds identical but contains the hidden message.<br>
+            <div class="image-wrapper">
+                <img src="../assets/project_photos/steganography/audio-encode.png" alt="Audio Encoding Panel">
+            </div>           
+        </p>
+        <h3>Decoding Process:</h3>
+        <p style="text-align: justify; text-justify: inter-word;">
+            1. <b>Audio File Selection</b>: The encoded .wav file is opened.<br>
+            2. <b>LSB Extraction</b>: Bits are read from the LSBs of audio sample bytes.<br>
+            3. <b>Marker Detection</b>: Special sequences indicate the end of the message and the cipher shift.<br>
+            4. <b>Binary Reconstruction & Decryption</b>: Binary is converted back to characters and decrypted.<br>
+            5. <b>Result Display</b>: The decrypted message is shown in the application.<br>
+            <div class="image-wrapper">
+                <img src="../assets/project_photos/steganography/audio-decode.png" alt="Audio Decoding Panel">
+            </div>           
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>5. Encryption Algorithm Used: Caesar Cipher</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The <b>Caesar cipher</b> is a simple substitution cipher where each letter in the plaintext is shifted by a
+            fixed
+            number of places. The application ensures:<br>
+            - <b>Encryption and decryption</b> stay within printable ASCII characters.<br>
+            - <b>Newline characters</b> are preserved for message formatting.<br>
+            - The <b>shift value</b> itself is embedded within the file for automatic retrieval during decoding.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>6. Technical Architecture</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The application is structured using <b>modular Java classes</b>, separating concerns between <b>GUI
+                components</b> and <b>core logic</b>. The interface is built using <b>Java Swing</b>, while encoding and
+            decoding logic for both image and audio steganography is implemented in dedicated classes such as
+            <b>ImageEncode</b>, <b>ImageDecode</b>, <b>AudioEncode</b>, and <b>AudioDecode</b>.
+            Utility classes like <b>EncryptAndConvert</b> and <b>DecryptAndConvert</b> handle the Caesar cipher logic
+            and binary transformations, ensuring clear separation between encryption and steganography mechanisms.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>7. File Format and Data Handling</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            The software supports <b>PNG, JPG, and JPEG</b> formats for images and <b>WAV</b> format for audio. During
+            encoding, the encrypted message is converted to a binary string, which includes a <b>terminator marker
+                (00000000)</b> to signify the end of the message and an additional marker after the Caesar shift value.
+            In image files, bits are embedded into the <b>least significant bits of RGB pixel channels</b>, while in
+            audio files, bits are embedded in the <b>LSBs of audio samples</b>. The decoding process reverses this
+            embedding, detects terminator patterns, extracts the binary message, and decrypts it using the embedded
+            Caesar shift.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>8. Limitations and Considerations</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            This implementation assumes that the input image or audio file is large enough to hold the entire binary
+            representation of the encrypted message and cipher value. There is no pre-check for available capacity.
+            Additionally, the Caesar cipher is not cryptographically strong and is used here for demonstration purposes
+            only.
+            The application does not currently support error detection or correction, meaning tampering with encoded
+            media may result in loss or corruption of the hidden message.
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Soumyadeep Banerjee. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

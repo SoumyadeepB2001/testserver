@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Huffman Encoder and Decoder</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/customscrollbar.css">
+    <style>
+        p {
+            max-width: 100%;
+        }
+
+        .image-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            /* scales down on small screens */
+            height: auto;
+            /* keeps aspect ratio */
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-content">
+                <h1>Huffman Encoder and Decoder</h1>
+                <nav>
+                    <a href="../index.html">&larr; Back to homepage</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>1. Introduction to Huffman Coding</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            <b>Huffman coding</b> is a lossless data compression algorithm that assigns variable-length codes to input
+            characters, with shorter codes assigned to more frequent characters. This results in an overall reduction in
+            file size while preserving all original information.
+        </p>
+        <p style="text-align: justify; text-justify: inter-word;">
+            This Java-based application provides a GUI interface to perform <b>Huffman compression</b> and
+            <b>extraction</b> on any file type. The user can compress any file into a custom <b>.huff</b> format, and
+            later extract the original content using the embedded metadata and Huffman decoding logic.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>2. Key Features of the Application</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            - <b>Universal File Support:</b> Compresses and extracts any file format by handling binary data
+            directly.<br>
+            - <b>Custom File Format:</b> Encoded files use the <b>.huff</b> extension and include headers for accurate
+            decompression.<br>
+            - <b>Embedded Metadata:</b> Stores file extension, padding information, and a complete byte frequency table
+            in the output file.<br>
+            - <b>Progress Feedback:</b> Uses a <b>JProgressBar</b> to provide visual feedback during long
+            operations.<br>
+            - <b>Navigation Panel:</b> Provides a switchable interface between <b>Compress</b> and <b>Extract</b> views
+            using a clean tab-like design.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>3. How Huffman Compression Works</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            - <b>Frequency Table Creation:</b> Each byte (0–255) is counted using
+            <b>HuffmanEncoder.buildFrequencyTable()</b> to determine its frequency in the file.<br>
+            - <b>Huffman Tree Generation:</b> A binary tree is built using a <b>priority queue</b> where nodes with
+            lower frequency have higher priority. Ties are broken lexicographically.<br>
+            - <b>Code Generation:</b> A recursive traversal generates a binary code for each byte, stored in a
+            <b>HashMap&lt;Byte, String&gt;</b>.<br>
+            - <b>Encoding:</b> The original file is re-encoded using these binary codes and written using
+            <b>BitOutputStream</b>, which handles individual bit-level writing.<br>
+            - <b>Header Writing:</b> Metadata such as file extension, frequency table, and padding are prepended using
+            <b>HuffmanEncoder.writeHuffFile()</b>.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>4. What is happening</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            Each <b>byte</b> (0–255) is treated like
+            a "symbol". We count how many times each byte appears in the file (its <b>frequency</b>). <br> Each byte
+            becomes
+            a <b>leaf node</b> in a binary tree. All leaf nodes go into a <b>priority queue</b> (a special kind of queue
+            that gives you the smallest thing first). <br> Nodes with <b>lower frequencies</b> are more important
+            here—they
+            get processed first. If two nodes have the same frequency, the one with the <b>lower byte value</b>
+            (lexicographical order) goes first. This is how <b>ties are broken</b>. <br> We build the tree from the
+            bottom
+            up: Pull out the two smallest nodes, combine them into a new node whose frequency is the <b>sum of both</b>,
+            put the new node back in the queue. Repeat until only <b>one node is left</b>—this is the <b>root of the
+                Huffman tree</b>.<br>
+            <b>We walk the tree:</b> Going <b>left</b> adds a '0' to the code, going
+            <b>right</b> adds a '1'. Once we reach a <b>leaf node</b> (i.e., a symbol), we <b>record the code string</b>
+            we built along the way in a map. The final result: a <code>HashMap&lt;Byte, String&gt;</code> where each
+            byte has its <b>unique binary code</b>.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>5. How Huffman Extraction Works</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            - <b>Header Reading:</b> The decoder reads the file extension, padding value, and frequency table using
+            <b>HuffmanDecoder.readHeader()</b>.<br>
+            - <b>Tree Reconstruction:</b> The same <b>Huffman tree</b> is rebuilt from the frequency table.<br>
+            - <b>Bit-by-Bit Decoding:</b> Using <b>BitInputStream</b>, each bit from the encoded file is read and
+            navigated through the Huffman tree until a leaf (byte value) is reached.<br>
+            - <b>File Output:</b> The decoded bytes are written to a new file with the original extension, restoring the
+            exact original file.<br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/huffman/compress.png" alt="File Compression">
+        </div>
+        <p style="text-align: center; text-justify: inter-word;"><b>Compressing a PDF file</b></p>
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/huffman/extract.png" alt="File Extraction">
+        </div>
+        <p style="text-align: center; text-justify: inter-word;"><b>Extracting a compressed file</b></p>
+        <br>
+        <div class="image-wrapper">
+            <img src="../assets/project_photos/huffman/file_sizes.png" alt="File Size Comparison">
+        </div>
+        <p style="text-align: center; text-justify: inter-word;"><b>Comparing file sizes before and after compression.
+                The original and extracted files have the same size,
+                while the compressed <code>.huff</code> file is smaller</b></p>
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>6. Technical Components and Design</h2>
+        <p style="text-align: justify; text-justify: inter-word;">
+            - <b>Bit-Level I/O:</b> The <b>BitInputStream</b> and <b>BitOutputStream</b> classes enable precise reading
+            and writing of individual bits, which is essential for Huffman coding.<br>
+            - <b>Custom Nodes:</b> The <b>HuffmanNode</b> class represents tree nodes and implements <b>Comparable</b>
+            to support min-heap ordering.<br>
+            - <b>Panel Switching:</b> <b>HuffmanCodec</b> acts as the main controller and swaps between
+            <b>CompressionPanel</b> and <b>ExtractionPanel</b> via the <b>NavBar</b>.<br>
+            - <b>Threaded Execution:</b> Compression and extraction run in background threads to keep the GUI
+            responsive, and use <b>SwingUtilities.invokeLater()</b> to update the UI.
+        </p>
+    </section>
+
+
+    <footer>
+        <p>&copy; 2025 Soumyadeep Banerjee. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
