@@ -175,7 +175,7 @@ footer {
     .project {
         padding: 0.75rem;
         text-align: left;
-        background-color: #e0f7f4;
+        background-color: var(--bg-color);
     }
 
     .project h2 {
