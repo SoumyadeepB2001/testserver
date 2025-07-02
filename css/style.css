@@ -348,7 +348,7 @@ section:focus-within,
 }
 
 /* 2. Touch device behavior overrides */
-@media (hover: none) {
+@media (hover: none), (pointer: coarse) {
 
     section:hover,
     section:focus-within,
