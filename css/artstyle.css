@@ -1,0 +1,173 @@
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #1abc9c;
+    --text-color: #444;
+    --bg-color: #ebf7f5;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.5;
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin: 0;
+}
+
+nav {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    font-size: 0.95rem;
+}
+
+nav a:hover {
+    border-color: var(--accent-color);
+}
+
+/* Masonry Layout with No Gaps */
+.projects-container {
+    column-count: 2;
+    column-gap: 0;
+}
+
+/* Individual project cards */
+.project {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    break-inside: avoid;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    transition: background-color 0.3s ease;
+}
+
+.project:hover {
+    background-color: transparent;
+}
+
+.project h2 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
+    position: relative;
+}
+
+.project h2::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: var(--accent-color);
+    margin-top: 0.25rem;
+    border-radius: 2px;
+}
+
+/* Project Image Styling - No gap */
+.project-image {
+    width: 100%;
+    height: auto;
+    border: none;
+    display: block;
+    margin: 0;
+    border: 3px solid var(--accent-color);
+}
+
+/* List and tech stack styling */
+.project-points {
+    padding: 0.25rem 0.75rem;
+    margin: 0;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.project-points li {
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+}
+
+.tech-stack {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #666;
+    margin: 0.25rem 0 0.5rem 0.75rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1rem;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    border-top: 1px solid #eee;
+}
+
+/* More links styling */
+.more-links-heading {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin: 0.2rem 0 0.8rem 0;
+}
+
+.more-links,
+.more-links:visited,
+.more-links:active,
+.more-links:focus {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+.more-links:hover {
+    color: var(--text-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1025px) {
+    .projects-container {
+        column-count: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    .project {
+        width: 90%;
+        margin-bottom: 1rem;
+    }
+
+    .project img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+}

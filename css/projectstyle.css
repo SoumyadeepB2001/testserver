@@ -30,7 +30,11 @@ h1 {
 }
 
 nav {
-    margin-top: 0.75rem;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
 nav a {
